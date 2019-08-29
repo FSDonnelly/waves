@@ -48,7 +48,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Encrypt password
-
 UserSchema.pre('save', function(next) {
   let user = this;
 

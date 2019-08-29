@@ -64,6 +64,7 @@ router.get('/logout', auth, (req, res) => {
 // @access  Private
 router.get('/auth', auth, (req, res) => {
   const { email, role, name, lastname, cart, history } = req.user;
+
   res.status(200).json({
     isAdmin: role === 0 ? false : true,
     isAuth: true,

@@ -19,4 +19,14 @@ router.post('/brand', auth, admin, (req, res) => {
   });
 });
 
+// @route   GET api/product/brands
+// @desc    User can get list of brands
+// @access  Public
+router.get('/brands', auth, admin, (req, res) => {
+  Brand.find({}, (err, brands) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(brands);
+  });
+});
+
 module.exports = router;
