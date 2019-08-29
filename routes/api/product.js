@@ -5,6 +5,30 @@ const auth = require('../../middleware/auth');
 const admin = require('../../middleware/admin');
 // Models
 const Brand = require('../../models/Brand');
+const Wood = require('../../models/Wood');
+
+// @route   POST api/product/wood
+// @desc    Auth Admin update wood
+// @access  Private
+router.post('/wood', auth, admin, (req, res) => {
+  const wood = new Wood(req.body);
+
+  wood.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+
+    res.status(200).json({ success: true, wood: doc });
+  });
+});
+
+// @route   GET api/product/woods
+// @desc    User can get list of woods
+// @access  Privat
+router.get('/woods', auth, admin, (req, res) => {
+  Wood.find({}, (err, woods) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(woods);
+  });
+});
 
 // @route   POST api/product/brand
 // @desc    Auth Admin update brand
