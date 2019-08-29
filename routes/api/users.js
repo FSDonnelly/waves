@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+//Miidleware
+const auth = require('../../middleware/auth');
 // Models
 const User = require('../../models/User');
 
@@ -37,13 +38,22 @@ router.post('/login', (req, res) => {
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
         res
-          .cookie('x-auth', user.token)
+          .cookie('x_auth', user.token)
           .status(200)
           .json({
             loginSuccess: true
           });
       });
     });
+  });
+});
+
+// @route   POST api/users/auth
+// @desc    Auth user
+// @access  Private
+router.get('/auth', auth, function(req, res) {
+  res.status(200).json({
+    user: req.user
   });
 });
 
