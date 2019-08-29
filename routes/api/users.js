@@ -8,7 +8,7 @@ const User = require('../../models/User');
 // @desc    Register user
 // @access  Public
 
-router.post('/api/users/register', (req, res) => {
+router.post('/register', (req, res) => {
   const user = new User(req.body);
 
   user.save((err, doc) => {
@@ -20,11 +20,11 @@ router.post('/api/users/register', (req, res) => {
   });
 });
 
-// @route   POST api/users/register
+// @route   POST api/users/login
 // @desc    Login user
 // @access  Public
 
-router.post('/api/users/login', (req, res) => {
+router.post('/login', (req, res) => {
   // check if user is registered if email already exists
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user)
