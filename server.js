@@ -9,6 +9,11 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
