@@ -15,8 +15,7 @@ router.post('/register', (req, res) => {
   user.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
-      success: true,
-      userData: doc
+      success: true
     });
   });
 });
@@ -48,12 +47,32 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @route   POST api/users/auth
+// @route   GET api/users/logout
+// @desc    Logout user
+// @access  Private
+router.get('/logout', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, doc) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true
+    });
+  });
+});
+
+// @route   GET api/users/auth
 // @desc    Auth user
 // @access  Private
-router.get('/auth', auth, function(req, res) {
+router.get('/auth', auth, (req, res) => {
+  const { email, role, name, lastname, cart, history } = req.user;
   res.status(200).json({
-    user: req.user
+    isAdmin: role === 0 ? false : true,
+    isAuth: true,
+    email,
+    name,
+    lastname,
+    role,
+    cart,
+    history
   });
 });
 
