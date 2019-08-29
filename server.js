@@ -14,6 +14,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// Models
+const User = require('./models/User');
+// Define Routes
+app.post('/api/users/register', (req, res) => {
+  res.status(200);
+});
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
