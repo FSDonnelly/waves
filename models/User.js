@@ -65,14 +65,14 @@ UserSchema.pre('save', function(next) {
     next();
   }
 });
-
+// Copmare Password to check in api/users/login route
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
   });
 };
-
+// Generate token for auth user at api/users/login route
 UserSchema.methods.generateToken = function(cb) {
   let user = this;
   let token = jwt.sign(user._id.toHexString(), process.env.jwtSecret);
