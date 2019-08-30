@@ -66,7 +66,7 @@ router.get('/auth', auth, (req, res) => {
   const { email, role, name, lastname, cart, history } = req.user;
 
   res.status(200).json({
-    isAdmin: role === 0 ? false : { lastname: 'Admin123' },
+    isAdmin: role === 0 ? false : true,
     isAuth: true,
     email,
     name,
