@@ -6,6 +6,23 @@ const admin = require('../../middleware/admin');
 // Models
 const Brand = require('../../models/Brand');
 const Wood = require('../../models/Wood');
+const Product = require('../../models/Product');
+
+//=====================================
+//             PRODUCTs
+//=====================================
+// @route   POST api/product/inventory
+// @desc    Auth Admin update inventory
+// @access  Private
+router.post('/inventory', auth, admin, (req, res) => {
+  const product = new Product(req.body);
+
+  product.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+
+    res.status(200).json({ success: true, product: doc });
+  });
+});
 
 //=====================================
 //           WOODS
