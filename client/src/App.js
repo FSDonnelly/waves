@@ -1,14 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Layout from './hoc/Layout';
+import Home from './components/layout/Home';
+import Routes from './components/routing/Routes';
 
 const App = () => {
   return (
     <Router>
-      <Fragment>
+      <Layout>
         <Switch>
-          <Route />
+          <Route exact path='/' component={Home} />
+          <Route component={Routes} />
         </Switch>
-      </Fragment>
+      </Layout>
     </Router>
   );
 };
