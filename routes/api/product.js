@@ -7,6 +7,9 @@ const admin = require('../../middleware/admin');
 const Brand = require('../../models/Brand');
 const Wood = require('../../models/Wood');
 
+//=====================================
+//           WOODS
+//======================================
 // @route   POST api/product/wood
 // @desc    Auth Admin update wood
 // @access  Private
@@ -29,7 +32,9 @@ router.get('/woods', auth, admin, (req, res) => {
     res.status(200).send(woods);
   });
 });
-
+//========================================
+//            BRANDS
+//========================================
 // @route   POST api/product/brand
 // @desc    Auth Admin update brand
 // @access  Private
