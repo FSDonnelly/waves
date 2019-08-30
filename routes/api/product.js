@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
 //Miidleware
 const auth = require('../../middleware/auth');
 const admin = require('../../middleware/admin');
@@ -9,7 +11,7 @@ const Wood = require('../../models/Wood');
 const Product = require('../../models/Product');
 
 //=====================================
-//             PRODUCTs
+//             PRODUCTS
 //=====================================
 // @route   POST api/product/inventory
 // @desc    Auth Admin update inventory
@@ -22,6 +24,29 @@ router.post('/inventory', auth, admin, (req, res) => {
 
     res.status(200).json({ success: true, product: doc });
   });
+});
+
+// @route   GET api/product/inventory_by_id
+// @desc    Auth Admin get inventory by id
+// @access  Public
+router.get('/inventory_by_id', (req, res) => {
+  let type = req.query.type;
+  let items = req.query.id;
+
+  if (type === 'array') {
+    let ids = items.split(',');
+    items = [];
+    items = ids.map(item => {
+      return mongoose.Types.ObjectId(item);
+    });
+  }
+
+  Product.find({ _id: { $in: items } })
+    .populate('brand')
+    .populate('wood')
+    .exec((err, docs) => {
+      return res.status(200).send(docs);
+    });
 });
 
 //=====================================
@@ -68,7 +93,7 @@ router.post('/brand', auth, admin, (req, res) => {
 // @route   GET api/product/brands
 // @desc    User can get list of brands
 // @access  Public
-router.get('/brands', auth, admin, (req, res) => {
+router.get('/brands', (req, res) => {
   Brand.find({}, (err, brands) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(brands);

@@ -48,7 +48,8 @@ const ProductSchema = mongoose.Schema(
     },
     inStock: {
       type: Number,
-      maxlength: 100
+      maxlength: 100,
+      default: 50
     },
     publish: {
       required: true,
