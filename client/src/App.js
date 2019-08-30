@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class App extends Component {
-  componentDidMount() {
-    axios.get('/api/product/brands').then(res => {
-      console.log(res);
-    });
-  }
-
-  render() {
-    return <div>MY APP</div>;
-  }
-}
+const App = () => {
+  return (
+    <Router>
+      <Fragment>
+        <Switch>
+          <Route />
+        </Switch>
+      </Fragment>
+    </Router>
+  );
+};
 
 export default App;
