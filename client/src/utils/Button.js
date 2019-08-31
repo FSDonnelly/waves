@@ -7,7 +7,8 @@ const MyButton = ({
   icon,
   linkTo,
   message,
-  type
+  type,
+  value
 }) => {
   const buttons = () => {
     let template = '';
@@ -24,6 +25,11 @@ const MyButton = ({
             <i className={icon}></i>
             {message}
           </Link>
+        );
+        break;
+      case 'submit':
+        template = (
+          <input type={type} className={buttonClassName} value={value} />
         );
         break;
       default:

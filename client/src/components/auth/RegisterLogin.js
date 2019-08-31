@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { login } from '../../actions/user';
 
 import MyButton from '../../utils/Button';
 
-const RegisterLogin = () => {
+const RegisterLogin = ({ login, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const { email, password } = formData;
+
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    login(email, password);
+    console.log('SUCCESS');
+  };
+
+  // Redirect if loggecd in
+  // if (isAuthenticated) {
+  //   return <Redirect to='' />;
+  // }
   return (
     <div className='container'>
       <div className='ui two column stackable grid container'>
@@ -24,7 +49,7 @@ const RegisterLogin = () => {
           />
         </div>
         <div className='column'>
-          <form>
+          <form className='form' onSubmit={e => onSubmit(e)}>
             <div className='form-group'>
               <label htmlFor='exampleInputEmail1'>
                 <strong>Email address</strong>
@@ -35,6 +60,7 @@ const RegisterLogin = () => {
                 id='exampleInputEmail1'
                 aria-describedby='emailHelp'
                 placeholder='Enter email'
+                onChange={e => onChange(e)}
               />
               <small id='emailHelp' className='form-text text-muted'>
                 We'll never share your email with anyone else.
@@ -49,10 +75,11 @@ const RegisterLogin = () => {
                 className='form-control'
                 id='exampleInputPassword1'
                 placeholder='Password'
+                onChange={e => onChange(e)}
               />
               <MyButton
-                type='default'
-                linkTo='/register'
+                type='submit'
+                value='Login'
                 message='Submit'
                 buttonClassName='ui green inverted button'
                 icon='icon user'
@@ -68,4 +95,18 @@ const RegisterLogin = () => {
   );
 };
 
-export default RegisterLogin;
+RegisterLogin.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.user.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(RegisterLogin);
+
+// export default RegisterLogin;
