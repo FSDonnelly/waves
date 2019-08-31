@@ -34,8 +34,12 @@ class Header extends Component {
         }}
       >
         <h1>
-          <Link className='navbar-logo' to='/'>
-            <i className='music icon' /> SOUNDWAVES
+          <Link
+            className='navbar-logo'
+            style={{ textDecoration: 'none' }}
+            to='/'
+          >
+            <i className='fas fa-guitar ' /> SOUNDWAVES
           </Link>
         </h1>
         <Fragment>
