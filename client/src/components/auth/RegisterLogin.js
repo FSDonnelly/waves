@@ -25,9 +25,10 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
   };
 
   // Redirect if loggecd in
-  // if (isAuthenticated) {
-  //   return <Redirect to='' />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to='' />;
+  }
+
   return (
     <div className='container'>
       <div className='ui two column stackable grid container'>
@@ -84,7 +85,7 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
                 buttonClassName='ui green inverted button'
                 icon='icon user'
                 addStyles={{
-                  margin: '10px 0 0 0 '
+                  marginTop: '10px'
                 }}
               />
             </div>

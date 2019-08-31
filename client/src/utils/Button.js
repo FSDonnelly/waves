@@ -29,7 +29,12 @@ const MyButton = ({
         break;
       case 'submit':
         template = (
-          <input type={type} className={buttonClassName} value={value} />
+          <input
+            type={type}
+            className={buttonClassName}
+            value={value}
+            style={addStyles}
+          />
         );
         break;
       default:
