@@ -48,10 +48,7 @@ class Header extends Component {
               <Link to=''>Items</Link>
             </li>
             <li>
-              <Link to=''>Register</Link>
-            </li>
-            <li>
-              <Link to=''>Login</Link>
+              <Link to='/register_login'>Login</Link>
             </li>
           </ul>
         </Fragment>
