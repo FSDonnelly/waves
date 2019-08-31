@@ -23,7 +23,7 @@ const Footer = () => {
               </div>
             </div>
             <div className='tag'>
-              <i className='far fa-clock icon' />
+              <i className='clock icon' />
               <div className='nfo'>
                 <div>Working Hours</div>
                 <div>9 AM to 10 PM Mon - Sat</div>

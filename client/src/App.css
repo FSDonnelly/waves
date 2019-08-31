@@ -566,6 +566,10 @@ footer .business_nfo .nfo {
     margin-bottom: 1rem;
   }
 
+  .navbar .fa-guitar {
+    padding: 0px 40px;
+  }
+
   .navbar .welcome {
     display: none;
   }

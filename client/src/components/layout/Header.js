@@ -39,7 +39,7 @@ class Header extends Component {
             style={{ textDecoration: 'none' }}
             to='/'
           >
-            <i className='fas fa-compact-disc ' /> SOUNDWAVES
+            <i className='fas fa-guitar ' /> SOUNDWAVES
           </Link>
         </h1>
         <Fragment>
