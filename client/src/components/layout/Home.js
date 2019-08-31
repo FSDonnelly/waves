@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class Home extends Component {
   render() {
-    return <div>Home</div>;
+    return (
+      <Fragment>
+        <div style={{ height: '1500px', backgroundColor: 'lightblue' }}>
+          Home
+        </div>
+      </Fragment>
+    );
   }
 }
 

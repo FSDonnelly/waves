@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Header from './components/layout/Header';
+import Layout from './hoc/Layout';
 import Home from './components/layout/Home';
 import Routes from './components/routing/Routes';
 
@@ -11,11 +11,12 @@ const App = () => {
   return (
     <Router>
       <Fragment>
-        <Header />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route component={Routes} />
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route component={Routes} />
+          </Switch>
+        </Layout>
       </Fragment>
     </Router>
   );
