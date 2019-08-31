@@ -339,11 +339,16 @@ button {
 }
 
 /*Footer*/
+footer h2 {
+  color: grey;
+}
+
 footer .logo {
   text-align: center;
   font-family: 'Monoton', cursive;
   color: #ffffff;
-  font-size: 40px;
+  font-size: 35px;
+  margin: auto;
   padding: 11px 0px;
   border-bottom: 1px solid #4d4d4d;
 }
@@ -351,16 +356,18 @@ footer .logo {
 footer .wrapper {
   display: flex;
   color: #828282;
+  justify-content: center;
 }
 
-footer .left,
+/* footer .left,
 footer .right {
   flex: 1;
-}
+} */
 
 footer .business_nfo {
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 footer .business_nfo .tag {
