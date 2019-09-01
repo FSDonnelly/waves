@@ -12,6 +12,7 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from './types';
+
 // Load user
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
@@ -32,14 +33,19 @@ export const loadUser = () => async dispatch => {
   }
 };
 // Register User
-export const register = ({ name, email, password }) => async dispatch => {
+export const register = ({
+  name,
+  lastname,
+  email,
+  password
+}) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, lastname, email, password });
 
   try {
     const res = await axios.post('/api/users/register', body, config);

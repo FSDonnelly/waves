@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -26,7 +26,7 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
 
   // Redirect if loggecd in
   if (isAuthenticated) {
-    return <Redirect to='' />;
+    return <Redirect to='/' />;
   }
 
   return (
@@ -50,6 +50,8 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
           />
         </div>
         <div className='column'>
+          <h1>Resgistered Customers</h1>
+          <p>If you have an account, please log in.</p>
           <form className='form' onSubmit={e => onSubmit(e)}>
             <div className='form-group'>
               <label htmlFor='exampleInputEmail1'>
@@ -57,11 +59,13 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
               </label>
               <input
                 type='email'
+                name='email'
                 className='form-control'
                 id='exampleInputEmail1'
                 aria-describedby='emailHelp'
                 placeholder='Enter email'
                 onChange={e => onChange(e)}
+                value={email}
               />
               <small id='emailHelp' className='form-text text-muted'>
                 We'll never share your email with anyone else.
@@ -72,11 +76,13 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
                 <strong>Password</strong>
               </label>
               <input
+                name='password'
                 type='password'
                 className='form-control'
                 id='exampleInputPassword1'
                 placeholder='Password'
                 onChange={e => onChange(e)}
+                value={password}
               />
               <MyButton
                 type='submit'

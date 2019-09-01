@@ -9,22 +9,26 @@ import { register } from '../../actions/user';
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
+    lastname: '',
     email: '',
     password: '',
     password2: ''
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, lastname, email, password, password2 } = formData;
 
   const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
 
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      register({ name, lastname, email, password });
     }
   };
 
@@ -47,6 +51,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             name='name'
             onChange={e => onChange(e)}
             value={name}
+            // required
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='text'
+            placeholder='Lastname'
+            name='lastname'
+            onChange={e => onChange(e)}
+            value={lastname}
             // required
           />
         </div>

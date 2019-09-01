@@ -3,11 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 
 import RegisterLogin from '../auth/RegisterLogin';
 import Register from '../auth/Register';
-import NotFound from '../layout/NoFound';
+import Alert from '../layout/Alert';
+import NotFound from '../layout/NotFound';
 
 const Routes = () => {
   return (
     <section className='container'>
+      <Alert />
       <Switch>
         <Route exact path='/register_login' component={RegisterLogin} />
         <Route exact path='/register' component={Register} />
