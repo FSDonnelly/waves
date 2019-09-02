@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { login } from '../../actions/user';
+import { setAlert } from '../../actions/alert';
 
 import MyButton from '../../utils/Button';
 
-const RegisterLogin = ({ login, isAuthenticated }) => {
+const RegisterLogin = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -20,9 +21,10 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-
+    if (email && password) {
+      setAlert('Login Success!', 'success');
+    }
     login(email, password);
-    console.log('SUCCESS');
   };
 
   // Redirect if loggecd in
@@ -105,7 +107,8 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
 
 RegisterLogin.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -114,5 +117,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, setAlert }
 )(RegisterLogin);

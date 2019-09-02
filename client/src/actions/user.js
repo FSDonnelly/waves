@@ -80,7 +80,6 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post('/api/users/login', body, config);
-    dispatch(setAlert('Login Success!', 'success'));
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
