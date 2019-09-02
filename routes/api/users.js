@@ -53,17 +53,13 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials-E' }] });
+        return res.status(400).json({ errors: [{ msg: 'Invalid Email' }] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials-P' }] });
+        return res.status(400).json({ errors: [{ msg: 'Invalid Password' }] });
       }
 
       // Return JSONwebtoken
@@ -92,14 +88,14 @@ router.post(
 // // @route   GET api/users/logout
 // // @desc    Logout user
 // // @access  Private
-// router.get('/logout', auth, (req, res) => {
-//   User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, doc) => {
-//     if (err) return res.json({ success: false, err });
-//     return res.status(200).send({
-//       success: true
-//     });
-//   });
-// });
+router.get('/logout', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, doc) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true
+    });
+  });
+});
 
 // // @route   GET api/users/auth
 // // @desc    Auth user
@@ -127,7 +123,7 @@ module.exports = router;
 router.post(
   '/register',
   [
-    check('name', 'Name is required')
+    check('name', 'Firstname is required')
       .not()
       .isEmpty(),
     check('lastname', 'Lastname is required')

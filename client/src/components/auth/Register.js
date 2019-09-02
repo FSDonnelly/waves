@@ -39,67 +39,73 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign Up</h1>
-      <p className='lead'>
-        <i className='fas fa-user' /> Create Your Account
-      </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
+      <div className='container'>
+        <h1 className='large text-primary'>Sign Up</h1>
+        <p className='lead'>
+          <i className='fas fa-user' /> Create Your Account
+        </p>
+        <form className='form' onSubmit={e => onSubmit(e)}>
+          <div className='form-group'>
+            <input
+              type='text'
+              placeholder='Firstname'
+              name='name'
+              onChange={e => onChange(e)}
+              value={name}
+              // required
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='text'
+              placeholder='Lastname'
+              name='lastname'
+              onChange={e => onChange(e)}
+              value={lastname}
+              // required
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='email'
+              placeholder='Email Address'
+              name='email'
+              onChange={e => onChange(e)}
+              value={email}
+              // required
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              onChange={e => onChange(e)}
+              minLength='8'
+              value={password}
+              // required
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='password'
+              placeholder='Confirm Password'
+              name='password2'
+              onChange={e => onChange(e)}
+              minLength='8'
+              value={password2}
+            />
+          </div>
           <input
-            type='text'
-            placeholder='Name'
-            name='name'
-            onChange={e => onChange(e)}
-            value={name}
-            // required
+            type='submit'
+            className='ui green inverted button'
+            value='Register'
           />
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Lastname'
-            name='lastname'
-            onChange={e => onChange(e)}
-            value={lastname}
-            // required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
-            onChange={e => onChange(e)}
-            value={email}
-            // required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            onChange={e => onChange(e)}
-            minLength='8'
-            value={password}
-            // required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Confirm Password'
-            name='password2'
-            onChange={e => onChange(e)}
-            minLength='8'
-            value={password2}
-          />
-        </div>
-        <input type='submit' className='btn btn-primary' value='Register' />
-      </form>
-      <p className='my-1'>
-        Already have an account? <Link to='/register_login'>Sign In</Link>
-      </p>
+        </form>
+        <p className='my-1'>
+          Already have an account? <Link to='/register_login'>Sign In</Link>
+        </p>
+      </div>
     </Fragment>
   );
 };

@@ -33,23 +33,6 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
     <div className='container'>
       <div className='ui two column stackable grid container'>
         <div className='column'>
-          <h1>New Customers</h1>
-          <p>
-            Create an account to recieve AWESOME deals and keep up to date on
-            the newest items!!
-          </p>
-          <MyButton
-            type='default'
-            linkTo='/register'
-            message='Create an Account'
-            buttonClassName='ui green inverted button'
-            icon='icon user'
-            addStyles={{
-              margin: '10px 0 0 0 '
-            }}
-          />
-        </div>
-        <div className='column'>
           <h1>Resgistered Customers</h1>
           <p>If you have an account, please log in.</p>
           <form className='form' onSubmit={e => onSubmit(e)}>
@@ -97,6 +80,23 @@ const RegisterLogin = ({ login, isAuthenticated }) => {
             </div>
           </form>
         </div>
+        <div className='column'>
+          <h1>New Customers</h1>
+          <p>
+            Create an account to recieve AWESOME deals and keep up to date on
+            the newest items!!
+          </p>
+          <MyButton
+            type='default'
+            linkTo='/register'
+            message='Create an Account'
+            buttonClassName='ui green inverted button'
+            icon='icon user'
+            addStyles={{
+              margin: '10px 0 0 0 '
+            }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -115,5 +115,3 @@ export default connect(
   mapStateToProps,
   { login }
 )(RegisterLogin);
-
-// export default RegisterLogin;
