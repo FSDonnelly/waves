@@ -29,12 +29,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, lastname, email, password });
+      setAlert('Register Success', 'success');
     }
   };
-
-  if (isAuthenticated) {
-    setAlert('Register Success', 'success');
-  }
 
   //   Redirect after user is registered
   if (isAuthenticated) {
