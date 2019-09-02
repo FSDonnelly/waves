@@ -28,14 +28,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      setAlert('Registration Suuccessful', 'success');
       register({ name, lastname, email, password });
+      setAlert('Registered Success', 'success');
     }
   };
 
   //   Redirect after user is registered
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/dashboad' />;
   }
 
   return (
