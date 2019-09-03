@@ -104,7 +104,7 @@ router.get('/auth', auth, (req, res) => {
   const { email, role, name, lastname, cart, history } = req.user;
 
   res.status(200).json({
-    isAdmin: role === 0 ? false : true,
+    isAdmin: role === 0 ? true : false,
     isAuthenticated: true,
     email,
     name,
@@ -143,7 +143,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, lastname, email, password } = req.body;
+    const { name, lastname, email, password, role } = req.body;
 
     try {
       // See if user exists
@@ -159,7 +159,8 @@ router.post(
         name,
         lastname,
         email,
-        password
+        password,
+        role
       });
 
       // Encrypt password

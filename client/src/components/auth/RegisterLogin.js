@@ -21,9 +21,7 @@ const RegisterLogin = ({ login, isAuthenticated, setAlert }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    if (email && password) {
-      setAlert('Login Success!', 'success');
-    }
+
     login(email, password);
   };
 

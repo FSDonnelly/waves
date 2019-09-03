@@ -16,7 +16,7 @@ const Dashboard = ({ loadUser, user: { loading, isAuthenticated } }) => {
     <Fragment>
       <DashboardLayout>
         <div className='container'>
-          <div className='user-info'>
+          <div className='info'>
             <h1>User Information</h1>
             <div className='profile'>
               <span>Name</span>
@@ -34,7 +34,7 @@ const Dashboard = ({ loadUser, user: { loading, isAuthenticated } }) => {
               }}
             />
           </div>
-          <div className='purchase-info'>
+          <div className='info'>
             <h1>Purchase History</h1>
             <div className='purchase-history'>history</div>
           </div>

@@ -166,6 +166,7 @@ img {
   color: #f44336;
   display: block;
   font-size: 15px;
+  font-weight: bold;
 }
 
 .bck_b_dark {
@@ -420,17 +421,29 @@ footer .business_nfo .nfo {
   padding: 10px;
 }
 
-.user-info {
-  margin: inherit;
+.info {
+  margin: 5px auto;
   border: 1px solid black;
   padding: 15px;
+  font-family: fantasy;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  text-transform: uppercase;
 }
 
-.purchase-info {
+.info h1 {
+  font-family: fantasy;
+}
+
+.info a {
+  border-bottom: 1px solid grey;
+}
+
+/* .purchase-info {
   margin: inherit;
   border: 1px solid black;
   padding: 15px;
-}
+} */
 /* Profile Page */
 .profile-grid {
   display: grid;

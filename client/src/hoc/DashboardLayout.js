@@ -28,9 +28,11 @@ const DashboardLayout = ({ children }) => {
     <div className='container'>
       <div className='profile'>
         <div className='nav flex-column'>
-          <h2>My Account</h2>
-          <div className='links' style={{ display: 'grid' }}>
-            {generateLinks(links)}
+          <div className='info'>
+            <h1>My Account</h1>
+            <div className='links' style={{ display: 'grid' }}>
+              {generateLinks(links)}
+            </div>
           </div>
         </div>
         <div className='nav flex-column'>{children}</div>
