@@ -19,19 +19,21 @@ const links = [
 const DashboardLayout = ({ children }) => {
   const generateLinks = links =>
     links.map(({ name, linkTo }, i) => (
-      <Link to={linkTo} key={i}>
+      <Link to={linkTo} key={i} style={{ textDecoration: 'none' }}>
         {name}
       </Link>
     ));
 
   return (
     <div className='container'>
-      <div className='user_container'>
-        <div className='user_left_nav'>
+      <div className='profile'>
+        <div className='nav flex-column'>
           <h2>My Account</h2>
-          <div className='links'>{generateLinks(links)}</div>
+          <div className='links' style={{ display: 'grid' }}>
+            {generateLinks(links)}
+          </div>
         </div>
-        <div className='user_right_nav'>{children}</div>
+        <div className='nav flex-column'>{children}</div>
       </div>
     </div>
   );

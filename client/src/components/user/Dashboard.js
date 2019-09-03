@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import DashboardLayout from '../../hoc/DashboardLayout';
 import { loadUser } from '../../actions/user';
-
+import MyButton from '../../utils/Button';
 const Dashboard = ({ loadUser, user: { loading, isAuthenticated } }) => {
   useEffect(() => {
     loadUser();
@@ -14,8 +14,32 @@ const Dashboard = ({ loadUser, user: { loading, isAuthenticated } }) => {
     <div>Loading...</div>
   ) : (
     <Fragment>
-      <div>Dashboard</div>
-      <DashboardLayout></DashboardLayout>
+      <DashboardLayout>
+        <div className='container'>
+          <div className='user-info'>
+            <h1>User Information</h1>
+            <div className='profile'>
+              <span>Name</span>
+              <span>Lastname</span>
+              <span>Email</span>
+            </div>
+            <MyButton
+              type='default'
+              linkTo='/user/profile'
+              message='Edit Account Info'
+              buttonClassName='ui green inverted button'
+              icon='far fa-user-circle'
+              addStyles={{
+                marginTop: '10px'
+              }}
+            />
+          </div>
+          <div className='purchase-info'>
+            <h1>Purchase History</h1>
+            <div className='purchase-history'>history</div>
+          </div>
+        </div>
+      </DashboardLayout>
     </Fragment>
   );
 };
