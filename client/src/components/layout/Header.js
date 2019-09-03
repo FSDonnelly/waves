@@ -18,7 +18,7 @@ const Header = ({ user: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link onClick={logout} to='#!'>
+        <Link onClick={logout} to='/register_login'>
           <i className='sign-out alternate icon' />
           <span className='hide-sm'>Logout</span>
         </Link>

@@ -55,6 +55,8 @@ export const register = ({
       payload: res.data
     });
 
+    dispatch(setAlert('Register Success', 'success'));
+
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
