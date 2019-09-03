@@ -40,28 +40,16 @@ const Header = ({ user: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
-  const authLogo = (
-    <Link
-      className='navbar-logo'
-      style={{ textDecoration: 'none' }}
-      to='/user/dashboard'
-    >
-      <i className='fas fa-guitar ' /> SOUNDWAVES
-    </Link>
-  );
-
-  const guestLogo = (
-    <Link className='navbar-logo' style={{ textDecoration: 'none' }} to='/'>
-      <i className='fas fa-guitar ' /> SOUNDWAVES
-    </Link>
-  );
-
   return (
     <nav className='navbar bg-dark'>
       <h1>
-        {!loading && (
-          <Fragment>{isAuthenticated ? authLogo : guestLogo}</Fragment>
-        )}
+        <Link
+          className='navbar-logo'
+          style={{ textDecoration: 'none' }}
+          to='/user/dashboard'
+        >
+          <i className='fas fa-guitar ' /> SOUNDWAVES
+        </Link>
       </h1>
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

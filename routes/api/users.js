@@ -8,32 +8,6 @@ const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const auth = require('../../middleware/auth');
 
-// const express = require('express');
-// const router = express.Router();
-// //Miidleware
-// const auth = require('../../middleware/auth');
-// // Models
-// const User = require('../../models/User');
-
-// // @route   POST api/users/register
-// // @desc    Register user
-// // @access  Public
-
-// router.post('/register', (req, res) => {
-//   const user = new User(req.body);
-
-//   user.save((err, doc) => {
-//     if (err) return res.json({ success: false, err });
-//     res.status(200).json({
-//       success: true
-//     });
-//   });
-// });
-
-// // @route   POST api/users/login
-// // @desc    Login user
-// // @access  Public
-
 router.post(
   '/login',
   [
