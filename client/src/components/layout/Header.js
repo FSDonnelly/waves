@@ -43,7 +43,11 @@ const Header = ({ user: { isAuthenticated, loading }, logout }) => {
   return (
     <nav className='navbar bg-dark'>
       <h1>
-        <Link className='navbar-logo' style={{ textDecoration: 'none' }} to='/'>
+        <Link
+          className='navbar-logo'
+          style={{ textDecoration: 'none' }}
+          to='/user/dashboard'
+        >
           <i className='fas fa-guitar ' /> SOUNDWAVES
         </Link>
       </h1>
