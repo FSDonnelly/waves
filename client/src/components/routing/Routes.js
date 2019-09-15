@@ -11,7 +11,7 @@ import Dashboard from '../user/Dashboard';
 
 const Routes = () => {
   return (
-    <section className='container'>
+    <div className='container'>
       <Alert />
       <Switch>
         <Route exact path='/register_login' component={RegisterLogin} />
@@ -19,7 +19,7 @@ const Routes = () => {
         <PrivateRoute exact path='/user/dashboard' component={Dashboard} />
         <Route component={NotFound} />
       </Switch>
-    </section>
+    </div>
   );
 };
 
