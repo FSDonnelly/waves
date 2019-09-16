@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 // Custom Auth Middleware
 const { auth } = require('./middleware/auth');
+const { admin } = require('./middleware/admin');
 // Models
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
@@ -26,12 +27,20 @@ const { Brand } = require('./models/brand');
 //    BRAND
 //===========================
 // Create a brand
-app.post('/api/product/brand', auth, (req, res) => {
+app.post('/api/product/brand', auth, admin, (req, res) => {
   const brand = new Brand(req.body);
 
   brand.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({ success: true, brand: doc });
+  });
+});
+
+//Get all brands
+app.get('/api/product/brands', (req, res) => {
+  Brand.find({}, (err, brands) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(brands);
   });
 });
 
