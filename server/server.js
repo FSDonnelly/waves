@@ -45,6 +45,27 @@ app.get('/api/product/items', (req, res) => {
     res.status(200).send(items);
   });
 });
+
+// Get items by id
+app.get('/api/product/items_by_id', (req, res) => {
+  let type = req.query.type;
+  let items = req.query.id;
+
+  if (type === 'array') {
+    let ids = req.query.id.split(',');
+    items = [];
+    items = ids.map(item => {
+      return mongoose.Types.ObjectId(item);
+    });
+  }
+  Product.find({ _id: { $in: items } })
+    .populate('brand')
+    .populate('wood')
+    .exec((err, docs) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send(docs);
+    });
+});
 //===========================
 //    WOODS
 //===========================
