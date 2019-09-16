@@ -43,7 +43,7 @@ const Footer = () => {
             <h2>Be the first to know</h2>
             <div>
               <div>
-                Get all the latest information on events, sales and offers.
+                Get all the latest information on events, sales, and offers.
               </div>
             </div>
           </div>
