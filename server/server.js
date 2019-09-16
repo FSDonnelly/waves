@@ -28,6 +28,25 @@ const { Product } = require('./models/product');
 //===========================
 //    PRODUCTS
 //===========================
+// Get item by arrival
+//{{url}}/api/product/items?sortBy=createdAt&order=desc&limit=4
+// Get item by sales
+//{{url}}/api/product/items?sortBy=sold&order=desc&limit=4
+app.get('/api/product/items', (req, res) => {
+  let order = req.query.order ? req.query.order : 'asc';
+  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
+
+  Product.find()
+    .populate('brand')
+    .populate('wood')
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .exec((err, items) => {
+      if (err) return res.status(400).send(err);
+      res.send(items);
+    });
+});
 // Create an item for inventory
 app.post('/api/product/item', auth, admin, (req, res) => {
   const product = new Product(req.body);
@@ -47,6 +66,8 @@ app.get('/api/product/items', (req, res) => {
 });
 
 // Get items by id
+//{{url}}/api/product/items_by_id?id=5d7f28718e9f1a4d64fed4bc,5d7f27248e9f1a4d64fed4bb,5d7f29708e9f1a4d64fed4bd&type=array
+//{{url}}/api/product/items_by_id?id=5d7f28718e9f1a4d64fed4bc&type=single
 app.get('/api/product/items_by_id', (req, res) => {
   let type = req.query.type;
   let items = req.query.id;
