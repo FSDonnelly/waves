@@ -17,19 +17,35 @@ mongoose.connect(process.env.DATABASE || process.env.MONGODB_URI, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+// Custom Auth Middleware
+const { auth } = require('./middleware/auth');
 // Models
 const { User } = require('./models/user');
 
 //===========================
 //    USERS
 //===========================
+// Auth User
+app.get('/api/users/auth', auth, (req, res) => {
+  res.status(200).json({
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    cart: req.user.cart,
+    history: req.user.history
+  });
+});
+
 // Register User
 app.post('/api/users/register', (req, res) => {
   const user = new User(req.body);
 
   user.save((err, doc) => {
     if (err) return res.json({ success: false, err });
-    res.status(200).json({ success: true, userdata: doc });
+    res.status(200).json({ success: true });
   });
 });
 
