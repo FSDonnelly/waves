@@ -24,6 +24,27 @@ const { admin } = require('./middleware/admin');
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
 const { Wood } = require('./models/wood');
+const { Product } = require('./models/product');
+//===========================
+//    PRODUCTS
+//===========================
+// Create an item for inventory
+app.post('/api/product/item', auth, admin, (req, res) => {
+  const product = new Product(req.body);
+
+  product.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({ success: true, item: doc });
+  });
+});
+
+//Get all items
+app.get('/api/product/items', (req, res) => {
+  Product.find({}, (err, items) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(items);
+  });
+});
 //===========================
 //    WOODS
 //===========================
