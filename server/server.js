@@ -21,6 +21,19 @@ app.use(cookieParser());
 const { auth } = require('./middleware/auth');
 // Models
 const { User } = require('./models/user');
+const { Brand } = require('./models/brand');
+//===========================
+//    BRAND
+//===========================
+// Create a brand
+app.post('/api/product/brand', auth, (req, res) => {
+  const brand = new Brand(req.body);
+
+  brand.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({ success: true, brand: doc });
+  });
+});
 
 //===========================
 //    USERS
@@ -84,6 +97,7 @@ app.get('/api/users/logout', auth, (req, res) => {
   });
 });
 
+// Connect server
 const PORT = process.env.PORT || 3002;
 
 app.listen(PORT, () =>
