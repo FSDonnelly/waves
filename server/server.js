@@ -3,21 +3,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // Setup servr
 const app = express();
-const mongoose = require('mongoose');
-require('dotenv').config();
-// Setup connection to DB
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE || process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
+const connectDB = require('./config/db');
+// Connect Database
+connectDB();
 // Init middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-// Custom Auth Middleware
+// Custom Middleware
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
 // Models
