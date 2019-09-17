@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import FormField from '../utils/Form/FormField';
-import { update } from '../utils/Form/formActions';
+import { generateData, isFormValid, update } from '../utils/Form/formActions';
 
 function mapStateToProps(state) {
   return {};
@@ -58,6 +58,17 @@ class Login extends Component {
 
   submitForm = e => {
     e.preventDefault();
+
+    let dataToSubmit = generateData(this.state.formData, 'login');
+    let formIsValid = isFormValid(this.state.formData, 'login');
+
+    if (formIsValid) {
+      console.log(dataToSubmit);
+    } else {
+      this.setState({
+        formError: true
+      });
+    }
   };
 
   render() {
@@ -77,6 +88,8 @@ class Login extends Component {
             formData={password}
             change={element => this.updateForm(element)}
           />
+
+          <button onClick={e => this.submitForm(e)}>Login</button>
         </form>
       </div>
     );
