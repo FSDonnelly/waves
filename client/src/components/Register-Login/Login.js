@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 
 import FormField from '../utils/Form/FormField';
 import { generateData, isFormValid, update } from '../utils/Form/formActions';
-
-function mapStateToProps(state) {
-  return {};
-}
+import { loginUser } from '../../actions/user';
 
 class Login extends Component {
   state = {
@@ -63,7 +60,7 @@ class Login extends Component {
     let formIsValid = isFormValid(this.state.formData, 'login');
 
     if (formIsValid) {
-      console.log(dataToSubmit);
+      this.props.dispatch(loginUser(dataToSubmit));
     } else {
       this.setState({
         formError: true
@@ -96,4 +93,4 @@ class Login extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);
